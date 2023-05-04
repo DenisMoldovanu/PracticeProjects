@@ -1,0 +1,21 @@
+.todo-list__container{
+    width: 100%;
+    border: 1px solid black;
+    min-height: 350px;
+    margin-top: 25px;
+    text-align: left;
+
+    li{
+        width: 100%;
+        max-width: 80%;
+        background-color: #c9c4c4;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+    }
+}
+.todo-list__remove{
+border: 1px solid black;
+background-color: green;
+}

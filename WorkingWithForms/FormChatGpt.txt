@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+
+const BasicForm = (props) => {
+
+  const [formValues, setFormValues] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const [formErrors, setFormErrors] = useState({});
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm(formValues);
+    if (Object.keys(errors).length === 0) {
+      // form is valid, submit data
+      setFormErrors("");
+      setFormValues({ ...formValues, name: '',
+      email: '',
+      password: '',
+      confirmPassword: '' });
+      console.log('Form submitted!');
+    } else {
+      // form is invalid, update errors state
+      setFormErrors(errors);
+    }
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">Name:</label>
+      <input type="text" id="name" name="name" value={formValues.name} onChange={handleChange} />
+      {formErrors.name && <div className="error">{formErrors.name}</div>}
+
+      <label htmlFor="email">Email:</label>
+      <input type="email" id="email" name="email" value={formValues.email} onChange={handleChange} />
+      {formErrors.email && <div className="error">{formErrors.email}</div>}
+
+      <label htmlFor="password">Password:</label>
+      <input type="password" id="password" name="password" value={formValues.password} onChange={handleChange} />
+      {formErrors.password && <div className="error">{formErrors.password}</div>}
+
+      <label htmlFor="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" value={formValues.confirmPassword} onChange={handleChange} />
+      {formErrors.confirmPassword && <div className="error">{formErrors.confirmPassword}</div>}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default BasicForm;
+
+
+function validateForm(values) {
+  const errors = {};
+  
+  // validate name field
+  if (!values.name.trim()) {
+    errors.name = 'Name is required';
+  }
+  
+  // validate email field
+  if (!values.email.trim()) {
+    errors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = 'Email is invalid';
+  }
+  
+  // validate password field
+  if (!values.password) {
+    errors.password = 'Password is required';
+  } else if (values.password.length < 6) {
+    errors.password = 'Password must be at least 6 characters long';
+  }
+  
+  // validate confirm password field
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Confirm Password is required';
+  } else if (values.confirmPassword !== values.password) {
+    errors.confirmPassword = 'Passwords do not match';
+  }
+  
+  return errors;
+}

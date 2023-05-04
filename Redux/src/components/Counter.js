@@ -6,7 +6,7 @@ const Counter = () => {
 
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter.counter);
-  const show = useSelector((state)=> state.counter.showCounter)
+  const show = useSelector((state)=> state.counter.showCounter);
   // const text = useSelector(state => state.text)
   // console.log(text)
 
