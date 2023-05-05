@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function MainNavigation() {
-	return <header>
+	return (
+	<header>
 		<nav>
 			<ul>
-				<li><Link to="/">Home Page</Link></li>
-				<li><Link to="/products">Products</Link></li>
+				<li><NavLink to="/" end>Home Page</NavLink></li>
+				<li><NavLink to="/products">Products</NavLink></li>
 			</ul>
 		</nav>
 	</header>
+	)
 }
 
 export default MainNavigation;
