@@ -6,8 +6,8 @@ function MainNavigation() {
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
-        <li><NavLink to="/" end>Home Page</NavLink></li>
-        <li><NavLink to="/events">Events Page</NavLink></li>
+        <li><NavLink to="/"className={({isActive}) => isActive? classes.active : undefined} end>Home Page</NavLink></li>
+        <li><NavLink to="/events" className={({isActive}) => isActive? classes.active : undefined}>Events Page</NavLink></li>
         </ul>
       </nav>
     </header>
